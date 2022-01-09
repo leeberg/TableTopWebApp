@@ -32,59 +32,66 @@ import { Tab } from '@mui/material';
 import { Tabs } from '@mui/material';
 
 import RollResults from '../components/rollResults';
+import RollEvaluation from '../components/RollEvaluation';
 
 
-function determineRoll(diceType, modifier, hasAdvantage, hasDisadvantage) {
+function determineRoll(diceCount, diceType, modifier, hasAdvantage, hasDisadvantage) {
 
-    var diceMin = 1;
-    var diceMax = 6;
+    var allRollCount = 0;
 
-    if (diceType === "d4") {
-        diceMax = 4;
-    }
-    if (diceType === "d6") {
-        diceMax = 6;
-    }
-    if (diceType === "d8") {
-        diceMax = 8;
-    }
-    if (diceType === "d10") {
-        diceMax = 10;
-    }
-    if (diceType === "d12") {
-        diceMax = 12;
-    }
-    if (diceType === "d20") {
-        diceMax = 20;
-    }
-    if (diceType === "d100") {
-        diceMax = 100;
-    }
+    for (let index = 0; index < diceCount; index++) {
 
+        var diceMin = 1;
+        var diceMax = 6;
 
-    var randomNumber = getRandomInt(diceMin, diceMax);
-    var randomNumber2 = 0;
-
-    if (hasAdvantage === true) {
-        randomNumber2 = getRandomInt(diceMin, diceMax);
-        if (randomNumber2 > randomNumber) {
-            randomNumber = randomNumber2
+        if (diceType === "d4") {
+            diceMax = 4;
+        }
+        if (diceType === "d6") {
+            diceMax = 6;
+        }
+        if (diceType === "d8") {
+            diceMax = 8;
+        }
+        if (diceType === "d10") {
+            diceMax = 10;
+        }
+        if (diceType === "d12") {
+            diceMax = 12;
+        }
+        if (diceType === "d20") {
+            diceMax = 20;
+        }
+        if (diceType === "d100") {
+            diceMax = 100;
         }
 
-    }
-    else if (hasDisadvantage === true) {
-        randomNumber2 = getRandomInt(diceMin, diceMax);
-        if (randomNumber2 < randomNumber) {
-            randomNumber = randomNumber2
+
+        var randomNumber = getRandomInt(diceMin, diceMax);
+        var randomNumber2 = 0;
+
+        if (hasAdvantage === true) {
+            randomNumber2 = getRandomInt(diceMin, diceMax);
+            if (randomNumber2 > randomNumber) {
+                randomNumber = randomNumber2
+            }
+
         }
+        else if (hasDisadvantage === true) {
+            randomNumber2 = getRandomInt(diceMin, diceMax);
+            if (randomNumber2 < randomNumber) {
+                randomNumber = randomNumber2
+            }
+        }
+
+        allRollCount = allRollCount + randomNumber;
+        //console.log("Roll Iteration: " + index + " - " + randomNumber + " Total: " + allRollCount);
+
     }
 
 
     var mod = new Number(modifier);
-    return randomNumber + mod;
-
-
-
+    return allRollCount + mod;
 
 
 }
@@ -172,10 +179,12 @@ export default class Rollpage extends React.Component {
         showArmorClass: false,
         showSavingThrow: false,
         showDiceOptions: true,
+        showResultEvaluation: false,
         targetRoll: 0,
         currentRollDescription: "Roll 1D6",
         currentRollSum: 0,
-        currentRollType: "Generic"
+        currentRollType: "Generic",
+        line1DiceRollIterations: 1
 
 
     }
@@ -269,6 +278,8 @@ export default class Rollpage extends React.Component {
         var showDiceOptions = false;
         var diceType = this.state.line1DiceType;
         var diceCount = this.state.numberOfRolls;
+        var rollIterations = 1; //reset back to one roll iteration
+        var resultEvaluation = false;
 
         if (newRollType === "Generic") {
 
@@ -283,6 +294,7 @@ export default class Rollpage extends React.Component {
             showArmorClass = true;
             diceType = "d20";
             diceCount = 1;
+            resultEvaluation= true;
         }
 
         if (newRollType === "Save") {
@@ -291,6 +303,7 @@ export default class Rollpage extends React.Component {
             showSavingThrow = true;
             diceType = "d20";
             diceCount = 1;
+            resultEvaluation= true;
 
         }
 
@@ -299,6 +312,7 @@ export default class Rollpage extends React.Component {
             isDamageRoll = true;
             showDiceOptions = true;
             diceType = "d6";
+            resultEvaluation= true;
         }
 
 
@@ -317,6 +331,10 @@ export default class Rollpage extends React.Component {
             showArmorClass: showArmorClass,
             showSavingThrow: showSavingThrow,
             showDiceOptions: showDiceOptions,
+            showResultEvaluation: resultEvaluation,
+
+            line1DiceRollIterations: rollIterations,
+            rolls: [],
             currentRollDescription: buildDiceRollDescription(diceCount, diceType, 0, false, false)
         });
 
@@ -336,9 +354,9 @@ export default class Rollpage extends React.Component {
         const newRolls = [];
 
         // Rool for number of rolls
-        for (let index = 0; index < this.state.numberOfRolls; index++) {
+        for (let index = 0; index < this.state.line1DiceRollIterations; index++) {
 
-            let result = determineRoll(this.state.line1DiceType, this.state.line1Modifier, this.state.line1HasAdvantage, this.state.line1HasDisadvantage);
+            let result = determineRoll(this.state.numberOfRolls, this.state.line1DiceType, this.state.line1Modifier, this.state.line1HasAdvantage, this.state.line1HasDisadvantage);
 
             newRolls.push(result);
 
@@ -354,7 +372,7 @@ export default class Rollpage extends React.Component {
 
 
 
-        console.log(this.state.rolls);
+        
 
 
     }
@@ -556,6 +574,43 @@ export default class Rollpage extends React.Component {
                                             : null}
 
 
+
+                                        <Select
+                                            labelId="demo-simple-select-label"
+                                            id="demo-line1DiceRollIterations-select"
+                                            name="line1DiceRollIterations"
+                                            value={this.state.line1DiceRollIterations}
+                                            label="Dice Amount"
+                                            onChange={this.handleInputChange}
+                                        >
+
+                                            <MenuItem value="1">1 Time</MenuItem>
+                                            <MenuItem value="2">2 Times</MenuItem>
+                                            <MenuItem value="3">3 Times</MenuItem>
+                                            <MenuItem value="4">4 Times</MenuItem>
+                                            <MenuItem value="5">5 Times</MenuItem>
+                                            <MenuItem value="6">6 Times</MenuItem>
+                                            <MenuItem value="7">7 Times</MenuItem>
+                                            <MenuItem value="8">8 Times</MenuItem>
+                                            <MenuItem value="9">9 Times</MenuItem>
+                                            <MenuItem value="10">10 Times</MenuItem>
+                                            <MenuItem value="11">11 Times</MenuItem>
+                                            <MenuItem value="12">12 Times</MenuItem>
+                                            <MenuItem value="13">13 Times</MenuItem>
+                                            <MenuItem value="14">14 Times</MenuItem>
+                                            <MenuItem value="15">15 Times</MenuItem>
+                                            <MenuItem value="16">16 Times</MenuItem>
+                                            <MenuItem value="17">17 Times</MenuItem>
+                                            <MenuItem value="18">18 Times</MenuItem>
+                                            <MenuItem value="19">19 Times</MenuItem>
+                                            <MenuItem value="20">20 Times</MenuItem>
+
+
+
+                                        </Select>
+
+
+
                                         <Button variant="contained" size="large" onClick={this.rollDice} >
                                             {this.state.currentRollDescription} 🎲
                                         </Button>
@@ -566,12 +621,20 @@ export default class Rollpage extends React.Component {
 
 
 
+                                    {this.state.showResultEvaluation ?
+                                        <Box>
+                                            <RollEvaluation props={this.state} />
+                                        </Box>
+                                        : null}
 
-
+                                    <br/>
 
                                     <Box>
                                         <RollResults props={this.state} />
                                     </Box>
+
+
+
 
                                 </Stack>
 
