@@ -39,6 +39,17 @@ const Header = () => {
                     <NavLink to="/travel">Travel</NavLink>
                 </Button>
 
+                
+                <Button color="inherit" >
+                    <NavLink to="/noticeboard">Board</NavLink>
+                </Button>
+
+
+                <Button color="inherit" >
+                    <NavLink to="/settlement">Settlement</NavLink>
+                </Button>
+
+
 
 
 

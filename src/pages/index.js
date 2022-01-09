@@ -22,6 +22,8 @@ import { Container } from "@mui/material";
 
 const Travelpage = React.lazy(() => import("./travel"));
 const Rollpage = React.lazy(() => import("./roll"));
+const Noticeboardpage = React.lazy(() => import("./noticeboard"));
+const Settlementpage = React.lazy(() => import("./settlement"));
 
 class Main extends Component {
 
@@ -50,6 +52,24 @@ class Main extends Component {
                                     </React.Suspense>
 
                                 } />
+                                 <Route path="/noticeboard" element={
+                                    <React.Suspense fallback={<>...</>}>
+                                        <Noticeboardpage />
+                                    </React.Suspense>
+
+                                } />
+                                 <Route path="/settlement" element={
+                                    <React.Suspense fallback={<>...</>}>
+                                        <Settlementpage />
+                                    </React.Suspense>
+
+                                } />
+
+
+
+
+
+
                             </Routes>
                         </div>
 
