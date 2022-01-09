@@ -4,8 +4,7 @@ module.exports = {
     title: "GatsbyDicer",
   },
   plugins: [
-    "gatsby-plugin-material-ui",
-    "gatsby-plugin-sass",
+
 
   ],
   pathPrefix: "/TableTopWebApp",
