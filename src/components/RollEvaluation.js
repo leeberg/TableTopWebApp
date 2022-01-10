@@ -41,7 +41,7 @@ export default function RollEvaluation({ props }) {
             if (RollType === "Damage") {
                 
                 hitCount = (hitCount + parseInt(roll));
-                console.log("Logging damage: "+ roll + " new total: " + hitCount);
+                //console.log("Logging damage: "+ roll + " new total: " + hitCount);
             }
         }
     });

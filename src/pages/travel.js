@@ -37,7 +37,7 @@ import Header from '../components/Header';
 
 function GenerateTravelStats(methodOfTransport, pace, HexSize, ExtraDifficulty) {
 
-    console.log(methodOfTransport + " " + pace + " " + HexSize + " " + ExtraDifficulty)
+   // console.log(methodOfTransport + " " + pace + " " + HexSize + " " + ExtraDifficulty)
 
     var basespeed = 0
     var speedMultiplier = 1;
@@ -162,7 +162,7 @@ function CalculateStress(method, pace, bushwhack, hoursperday) {
     var calculatedStress = "Sustainable";
 
 
-    console.log("Calculating Stress for: " + method + " pace: " + pace + " bushwhack: " + bushwhack + " hours per day:" + hoursperday)
+   // console.log("Calculating Stress for: " + method + " pace: " + pace + " bushwhack: " + bushwhack + " hours per day:" + hoursperday)
 
     //Stress        0
     //"Relaxing"        0
@@ -258,8 +258,7 @@ function CalculateStress(method, pace, bushwhack, hoursperday) {
     //calculatedStressScore = calculatedStressScore + bushwhack;
 
 
-    if(parseInt(bushwhack) === 3  )
-    {
+    if (parseInt(bushwhack) === 3) {
         calculatedStressScore = calculatedStressScore + 1;
     }
 
@@ -269,10 +268,9 @@ function CalculateStress(method, pace, bushwhack, hoursperday) {
     //<MenuItem value="3">Wagon 🛷 </MenuItem>
     //<MenuItem value="4">Ship 🚢</MenuItem>
 
-    
 
-    if(parseInt(method) === 4  )
-    {
+
+    if (parseInt(method) === 4) {
         calculatedStressScore = calculatedStressScore - 1;
     }
 
@@ -396,8 +394,7 @@ export default class Travelpage extends React.Component {
         var speed = GenerateTravelStats(method, pace, hexSize, bushwhack);
         var hexPerHour = CalculateHexSpeed(speed, hexSize);
         var hexPerDay = (hexPerHour * travelhours);
-        if(hexPerDay === 4.8)
-        {
+        if (hexPerDay === 4.8) {
             hexPerDay = 5; //this is a book thing
         }
 
@@ -431,7 +428,7 @@ export default class Travelpage extends React.Component {
         return (
 
             <Container maxWidth="lg">
- <Header/>
+                <Header />
                 <Container maxWidth="md">
                     <Box>
                         <Stack spacing={3}>

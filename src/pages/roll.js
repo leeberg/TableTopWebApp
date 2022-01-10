@@ -150,7 +150,7 @@ function buildDiceRollDescription(diceCount, diceType, modifier, advantage, disa
     }
 
 
-    console.log(rolldescription);
+    //console.log(rolldescription);
     return rolldescription;
 
 }

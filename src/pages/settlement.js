@@ -37,7 +37,7 @@ function SetupBoard(size, location) {
     var questsToShow = 2;
 
 
-    console.log("New Board setup with size: " + size + " and location: " + location);
+    //console.log("New Board setup with size: " + size + " and location: " + location);
 
     switch (size) {
         case 1:
@@ -70,7 +70,7 @@ function SetupBoard(size, location) {
     }
 
 
-    console.log("Quests to SHow: " + questsToShow);
+    //console.log("Quests to SHow: " + questsToShow);
 
     for (let index = 0; index < questsToShow; index++) {
         //const element = array[index];
