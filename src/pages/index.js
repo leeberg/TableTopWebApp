@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 
+import Header from '../components/Header';
 
 class Main extends Component {
 
     render() {
 
         return (
-            "test"
+            <Container>
+                <Header/>
+                <br/>
+                "Use the links above"
+            </Container>
         );
     };
 };

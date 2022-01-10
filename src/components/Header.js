@@ -6,12 +6,6 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import {
-    BrowserRouter as Router,
-    Switch,
-    NavLink,
-    BrowserRouter
-} from "react-router-dom";
 
 
 const Header = () => {
@@ -48,11 +42,6 @@ const Header = () => {
                 <Button color="inherit" >
                     <NavLink to="/settlement">Settlement</NavLink>
                 </Button>
-
-
-
-
-
 
 
             </Toolbar>
