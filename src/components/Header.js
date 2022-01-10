@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
+import Link from './Link';
 
 
 const Header = () => {
@@ -25,22 +24,30 @@ const Header = () => {
                 </Typography>
 
                 <Button color="inherit" >
-                    <NavLink to="/roll">Rolling</NavLink>
+                    <Link href="/TableTopWebApp/roll" underline="hover">
+                        {'underline="hover"'} Rolling
+                    </Link>
                 </Button>
 
 
                 <Button color="inherit" >
-                    <NavLink to="/travel">Travel</NavLink>
-                </Button>
-
-                
-                <Button color="inherit" >
-                    <NavLink to="/noticeboard">Board</NavLink>
+                    <Link href="/TableTopWebApp/travel" underline="hover">
+                        {'underline="hover"'} Travel
+                    </Link>
                 </Button>
 
 
+                <Button color="inherit" >                    
+                    <Link href="/TableTopWebApp/noticeboard" underline="hover">
+                        {'underline="hover"'} Notice Board
+                    </Link>
+                </Button>
+
+
                 <Button color="inherit" >
-                    <NavLink to="/settlement">Settlement</NavLink>
+                    <Link href="/TableTopWebApp/settlement" underline="hover">
+                        {'underline="hover"'} Settlement
+                    </Link>
                 </Button>
 
 

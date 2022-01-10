@@ -32,7 +32,7 @@ import { Tab } from '@mui/material';
 import { Tabs } from '@mui/material';
 
 import RollResults from '../components/rollResults';
-
+import Header from '../components/Header';
 
 
 function GenerateTravelStats(methodOfTransport, pace, HexSize, ExtraDifficulty) {
@@ -431,7 +431,7 @@ export default class Travelpage extends React.Component {
         return (
 
             <Container maxWidth="lg">
-
+ <Header/>
                 <Container maxWidth="md">
                     <Box>
                         <Stack spacing={3}>

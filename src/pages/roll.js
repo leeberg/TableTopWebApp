@@ -33,6 +33,9 @@ import { Tabs } from '@mui/material';
 
 import RollResults from '../components/rollResults';
 import RollEvaluation from '../components/RollEvaluation';
+import Header from '../components/Header';
+
+
 
 
 function determineRoll(diceCount, diceType, modifier, hasAdvantage, hasDisadvantage) {
@@ -384,6 +387,7 @@ export default class Rollpage extends React.Component {
 
         return (
             <Container maxWidth="lg">
+                 <Header/>
                 <Container maxWidth="md">
                     <Box>
                         <Stack spacing={3}>

@@ -19,7 +19,7 @@ import FormGroup from '@mui/material/FormGroup';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { Stack } from '@mui/material';
-
+import Header from '../components/Header';
 
 const questTypes = ["Bounty", "Clear", "EscortPerson", "EscortCargo", "Hunt"];
 
@@ -162,6 +162,8 @@ export default class Noticeboardpage extends React.Component {
         return (
 
             <Container maxWidth="lg">
+                <Header/>
+                
 
                 <Container maxWidth="md">
                     <Box>
