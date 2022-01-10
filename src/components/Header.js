@@ -24,29 +24,29 @@ const Header = () => {
                 </Typography>
 
                 <Button color="inherit" >
-                    <Link href="/TableTopWebApp/roll" underline="hover">
-                        {'underline="hover"'} Rolling
+                    <Link href="/TableTopWebApp/roll" underline="hover" color="#FFFFFF">
+                        Rolling
                     </Link>
                 </Button>
 
 
                 <Button color="inherit" >
-                    <Link href="/TableTopWebApp/travel" underline="hover">
-                        {'underline="hover"'} Travel
-                    </Link>
-                </Button>
-
-
-                <Button color="inherit" >                    
-                    <Link href="/TableTopWebApp/noticeboard" underline="hover">
-                        {'underline="hover"'} Notice Board
+                    <Link href="/TableTopWebApp/travel" underline="hover" color="#FFFFFF">
+                        Travel
                     </Link>
                 </Button>
 
 
                 <Button color="inherit" >
-                    <Link href="/TableTopWebApp/settlement" underline="hover">
-                        {'underline="hover"'} Settlement
+                    <Link href="/TableTopWebApp/noticeboard" underline="hover" color="#FFFFFF">
+                        Notice Board
+                    </Link>
+                </Button>
+
+
+                <Button color="inherit" >
+                    <Link href="/TableTopWebApp/settlement" underline="hover" color="#FFFFFF">
+                        Settlement
                     </Link>
                 </Button>
 
